@@ -158,6 +158,7 @@ public class BinaryTreeByLinkedList {
 	
 	
 	void levelOrderTraversal() {
+		
 		// make a queue for level order. Queue is Interface and linked list is class
 		Queue<BTNode> queue = new LinkedList<BTNode>();
 		queue.add(root);
