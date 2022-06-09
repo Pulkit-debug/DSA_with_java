@@ -68,6 +68,17 @@ public class TreeMain {
 		return count;
 	}
 
+	public static int treeHeight(TreeNode<Integer> root) {
+		// given that I'm providing atleast 1 node.
+		int maxHeightCount = 0;
+		for(int i = 0;i<root.children.size();i++) {
+			int max = treeHeight(root.children.get(i));
+			maxHeightCount = Math.max(max, maxHeightCount);
+		}
+		maxHeightCount += 1;
+		
+		return maxHeightCount;
+	}
 	
 	public static void printLevelWise(TreeNode<Integer> root) {
 
@@ -98,14 +109,17 @@ public class TreeMain {
 		
 		return max;
 	}
+	
+	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 //		TreeNode<Integer> root = takeInput(sc);
 //		print(root);
 		TreeNode<Integer> root = takeInputLevelWise(sc);
 		printLevelWise(root);
-		System.out.println(numNodes(root));
+		System.out.println("Number of nodes in the tree are: " + numNodes(root));
 		System.out.println("Maximum size of node is: " + largestNode(root));
+		System.out.println("Maximum Height of tree is: " + treeHeight(root));
 		
 
 //		TreeNode<Integer> tn = new TreeNode<Integer>(5);
@@ -114,6 +128,7 @@ public class TreeMain {
 //		tn.children.add(node1);
 //		tn.children.add(node2);
 //		node1.children.add(node2);
+		
 		
 
 	}
