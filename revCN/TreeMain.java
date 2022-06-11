@@ -1,4 +1,4 @@
-package treesCN;
+package revCN;
 import java.util.*;
 
 public class TreeMain {
@@ -111,6 +111,53 @@ public class TreeMain {
 	}
 	
 	
+	public static void depthOfNode(TreeNode<Integer> root, int k) { // k is depth of a node.
+		if(k < 0) return;
+		if(k == 0) {
+			System.out.println(root.data);
+			return;
+		}
+		
+			for(int i = 0;i<root.children.size();i++) {
+				depthOfNode(root.children.get(i), k-1);
+			}
+		
+	}
+	
+	public static int countLeafNodes(TreeNode<Integer> root) {
+		if(root == null) return 0;
+		if(root.children.size() == 0) return 1;
+		int leafCount = 0;
+		for(int i = 0;i<root.children.size();i++) {
+			leafCount += countLeafNodes(root.children.get(i));
+			
+		}
+		return leafCount;
+	}
+
+	public static void preOrderTraversal(TreeNode<Integer> root) {
+		if(root == null) return ;
+		System.out.print(root.data + " ");
+		for(int i = 0;i<root.children.size();i++) {
+			preOrderTraversal(root.children.get(i));
+		}
+	}
+	
+	public static void postOrderTraversal(TreeNode<Integer> root ) {
+		if(root == null) return ;
+		if(root.children.size() == 0) {
+			System.out.print(root.data + " ");
+			return;
+		}
+		for(int i = 0;i<root.children.size();i++) {
+			preOrderTraversal(root.children.get(i));
+		}
+		
+		System.out.print(root.data + " ");
+	}
+
+	
+	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 //		TreeNode<Integer> root = takeInput(sc);
@@ -120,6 +167,11 @@ public class TreeMain {
 		System.out.println("Number of nodes in the tree are: " + numNodes(root));
 		System.out.println("Maximum size of node is: " + largestNode(root));
 		System.out.println("Maximum Height of tree is: " + treeHeight(root));
+		depthOfNode(root, 2);
+		System.out.println("No. of leaf nodes are: " + countLeafNodes(root));
+//		preOrderTraversal(root);
+//		System.out.println();
+		postOrderTraversal(root);
 		
 
 //		TreeNode<Integer> tn = new TreeNode<Integer>(5);
